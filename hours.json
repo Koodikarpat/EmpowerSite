@@ -1,0 +1,124 @@
+{
+  "hours": [
+    {
+      "hour": 592,
+      "value": 3.92,
+      "sentence": "3.92 kWh"
+    },
+    {
+      "hour": 498,
+      "value": 5,
+      "sentence": "5 kWh"
+    },
+    {
+      "hour": 431,
+      "value": 4.07,
+      "sentence": "4.07 kWh"
+    },
+    {
+      "hour": 327,
+      "value": 3.1,
+      "sentence": "3.1 kWh"
+    },
+    {
+      "hour": 415,
+      "value": 9.67,
+      "sentence": "9.67 kWh"
+    },
+    {
+      "hour": 126,
+      "value": 9.2,
+      "sentence": "9.2 kWh"
+    },
+    {
+      "hour": 307,
+      "value": 1.75,
+      "sentence": "1.75 kWh"
+    },
+    {
+      "hour": 276,
+      "value": 5.08,
+      "sentence": "5.08 kWh"
+    },
+    {
+      "hour": 323,
+      "value": 1.38,
+      "sentence": "1.38 kWh"
+    },
+    {
+      "hour": 339,
+      "value": 1.52,
+      "sentence": "1.52 kWh"
+    },
+    {
+      "hour": 396,
+      "value": 4.18,
+      "sentence": "4.18 kWh"
+    },
+    {
+      "hour": 132,
+      "value": 0.74,
+      "sentence": "0.74 kWh"
+    },
+    {
+      "hour": 522,
+      "value": 9.51,
+      "sentence": "9.51 kWh"
+    },
+    {
+      "hour": 393,
+      "value": 6.58,
+      "sentence": "6.58 kWh"
+    },
+    {
+      "hour": 696,
+      "value": 3.7,
+      "sentence": "3.7 kWh"
+    },
+    {
+      "hour": 200,
+      "value": 5.11,
+      "sentence": "5.11 kWh"
+    },
+    {
+      "hour": 453,
+      "value": 1.86,
+      "sentence": "1.86 kWh"
+    },
+    {
+      "hour": 530,
+      "value": 6.65,
+      "sentence": "6.65 kWh"
+    },
+    {
+      "hour": 603,
+      "value": 5.83,
+      "sentence": "5.83 kWh"
+    },
+    {
+      "hour": 591,
+      "value": 0.38,
+      "sentence": "0.38 kWh"
+    },
+    {
+      "hour": 260,
+      "value": 1.17,
+      "sentence": "1.17 kWh"
+    },
+    {
+      "hour": 430,
+      "value": 1.52,
+      "sentence": "1.52 kWh"
+    },
+    {
+      "hour": 343,
+      "value": 3.1,
+      "sentence": "3.1 kWh"
+    },
+    {
+      "hour": 328,
+      "value": 1.22,
+      "sentence": "1.22 kWh"
+    }
+  ]
+}
