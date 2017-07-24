@@ -1,5 +1,5 @@
 var osoite;
-var date = "22.3.1490"
+
 
 function sendStuff(){
 
@@ -23,7 +23,6 @@ function sendday(){
     $.post(window.location.href,
         stuff,
         function(data, status){
-            data.id = stuff.day;
             generateDay.call(data);
         }
     );
@@ -55,7 +54,7 @@ function generateForm(){
         }
     }
     var vuodet = [2017, 2016, 2015, 2014, 2013, 2012, 2011];
-    var kuukaudet = ["Tammikuu", "Helmikuu", "Maaliskuukuu", "Huhtikuu", "Toukokuu", "Kesäkuu",
+    var kuukaudet = ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu",
                     "Heinäkuu", "Elokuu", "Syyskuu",
                     "Lokakuu", "Marraskuu", "Joulukuu"];
 
@@ -132,20 +131,24 @@ function generateList(){
     head.appendChild(document.createTextNode(osoite));
     cell.appendChild(head);
     body.appendChild(cell);
-    for (var i = 0; i < this.days.length; i++){
+    for (var i = 1; i <= Object.keys(this).length; i++){
         cell = document.createElement("tr");
         for (var j = 0; j < 2; j++){
             var td = document.createElement("td");
             if(j == 0){
                 b = document.createElement("button");
                 b.setAttribute("class", "dateButton");
-                b.setAttribute("id", this.days[i].date);
-                b.appendChild(document.createTextNode(this.days[i].date));
+                b.setAttribute("id", this[i]["date"]);
+                b.appendChild(document.createTextNode(this[i]["date"]));
                 b.onclick  = sendday;
                 td.appendChild(b);
             }
             else{
-                td.appendChild(document.createTextNode(this.days[i].sentence));
+                total = 0
+                for (var h = 0; h < 24; h++){
+                    total = total + this[i][h]
+                }
+                td.appendChild(document.createTextNode(total.toFixed(2) + " kWh"));
             }
             cell.appendChild(td);
         }
@@ -176,18 +179,18 @@ function generateDay(){
     var head = document.createElement("th");
     head.setAttribute("align", "center");
     head.setAttribute("colspan", "2");
-    head.appendChild(document.createTextNode(osoite + " " + this.id));
+    head.appendChild(document.createTextNode(osoite + " " + this.date));
     cell.appendChild(head);
     body.appendChild(cell);
-    for (var i = 0; i < this.hours.length; i++){
+    for (var i = 0; i < Object.keys(this).length; i++){
         cell = document.createElement("tr");
         for (var j = 0; j < 2; j++){
             var td = document.createElement("td");
             if(j == 0){
-                td.appendChild(document.createTextNode(this.hours[i].hour));
+                td.appendChild(document.createTextNode(i));
             }
             else{
-                td.appendChild(document.createTextNode(this.hours[i].sentence));
+                td.appendChild(document.createTextNode(this[i]));
             }
             cell.appendChild(td);
         }
