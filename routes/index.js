@@ -25,9 +25,11 @@ router.post('/', function(req, res, next){
     else if (req.body.day != null){
         console.log("got date");
         data = data3[myMonth];
+        console.log(data);
         for(var i = 1; i <= 31; i++){
             if(data[i]["date"] == req.body.day){
                 var dataSend = data[i];
+                break;
             }
         }
         res.send(dataSend);
