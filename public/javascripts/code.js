@@ -182,7 +182,7 @@ function generateDay(){
     head.appendChild(document.createTextNode(osoite + " " + this.date));
     cell.appendChild(head);
     body.appendChild(cell);
-    for (var i = 0; i < Object.keys(this).length; i++){
+    for (var i = 0; i < Object.keys(this).length - 1; i++){
         cell = document.createElement("tr");
         for (var j = 0; j < 2; j++){
             var td = document.createElement("td");
