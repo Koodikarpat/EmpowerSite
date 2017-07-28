@@ -1,0 +1,109 @@
+
+{
+  
+  year:'{{index(2014)}}',
+  months:[
+    {
+    tammikuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}', <from 0 to 743>
+        consumption:'{{floating(2, 10, 2)}}' <kWh used>
+        
+      }
+    ],
+      helmikuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      maaliskuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      huhtikuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      toukokuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      kesakuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      heinakuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      elokuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+    syyskuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      lokakuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      marraskuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ],
+      joulukuu:[
+      '{{repeat(744)}}',
+      {
+        hour:'{{index()}}',
+        consumption:'{{floating(2, 10, 2)}}'
+        
+      }
+    ]
+    }
+  
+  ]
+  
+}
+
+
