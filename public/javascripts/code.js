@@ -1,4 +1,7 @@
 var osoite;
+var dbmonth;
+
+
 
 
 function sendStuff(){
@@ -6,15 +9,32 @@ function sendStuff(){
     var year = document.getElementById("vuodet");
     var month = document.getElementById("kuukaudet");
     var stuff = {year: year.options[year.selectedIndex].value,
-                month: month.options[month.selectedIndex].value
+                month: month.options[month.selectedIndex].value,
+                address: osoite
             };
     $.post(window.location.href,
         stuff,
         function(data, status){;
-            generateList.call(data);
+            if (data.results != null){
+                dbmonth = data;
+                generateList.call(data);
+            }
+            else{
+                var table = document.getElementById("kdata");
+                var table2 = document.getElementById("ddata");
+                if (table != null){
+                    table.parentNode.removeChild(table);
+                }
+                if (table2 != null){
+                    table2.parentNode.removeChild(table2);
+                }
+                alert("Tästä kuusta ei ole dataa")
+
+            }
         }
     );
 }
+/*
 function sendday(){
 
 
@@ -26,13 +46,41 @@ function sendday(){
             generateDay.call(data);
         }
     );
-}
+}*/
 
 function checkAddress(){
     osoite = document.place.Osoite.value;
 
+    var stuff = {osoite:osoite
+            };
+    $.post(window.location.href,
+        stuff,
+        function(data, status){;
+            if (data.length != 0){
+                generateForm.call(data);
+            }
+            else{
+                var fo = document.getElementById("vuodet");
+                var kuut = document.getElementById("kuukaudet");
+                var sub = document.getElementById("button");
+                var table = document.getElementById("kdata");
+                var table2 = document.getElementById("ddata");
+                if (fo != null){
+                    fo.parentNode.removeChild(fo);
+                    kuut.parentNode.removeChild(kuut);
+                    sub.parentNode.removeChild(sub);
+                    if (table != null){
+                        table.parentNode.removeChild(table);
+                    }
+                    if (table2 != null){
+                        table2.parentNode.removeChild(table2);
+                    }
+                }
+                alert("Osoitetta ei ole listassamme")
+            }
+        }
+    );
 
-    generateForm();
 
 }
 
@@ -53,7 +101,7 @@ function generateForm(){
             table2.parentNode.removeChild(table2);
         }
     }
-    var vuodet = [2017, 2016, 2015, 2014, 2013, 2012, 2011];
+    var vuodet = this;
     var kuukaudet = ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu",
                     "Heinäkuu", "Elokuu", "Syyskuu",
                     "Lokakuu", "Marraskuu", "Joulukuu"];
@@ -131,22 +179,34 @@ function generateList(){
     head.appendChild(document.createTextNode(osoite));
     cell.appendChild(head);
     body.appendChild(cell);
-    for (var i = 1; i <= Object.keys(this).length; i++){
+    var days = Math.ceil(this.results.length/24)
+    for (var i = 1; i <= days; i++){
         cell = document.createElement("tr");
+        var length = this.results.length
         for (var j = 0; j < 2; j++){
             var td = document.createElement("td");
+            if (i == days){
+                var hours = length - (i-1)*24
+            }
+            else{
+                var hours = 24
+            }
             if(j == 0){
+                var date = i + "." + this.month + "." + this.year;
                 b = document.createElement("button");
                 b.setAttribute("class", "dateButton");
-                b.setAttribute("id", this[i]["date"]);
-                b.appendChild(document.createTextNode(this[i]["date"]));
-                b.onclick  = sendday;
+                b.setAttribute("id", date);
+                b.setAttribute("data-day", i);
+                b.setAttribute("data-hours", hours);
+                b.appendChild(document.createTextNode(date));
+                b.onclick  = generateDay;
                 td.appendChild(b);
             }
             else{
-                total = 0
-                for (var h = 0; h < 24; h++){
-                    total = total + this[i][h]
+                var total = 0
+
+                for (var h = 0; h < hours; h++){
+                    total = total + this.results[h + (i-1)*24].consumption
                 }
                 td.appendChild(document.createTextNode(total.toFixed(2) + " kWh"));
             }
@@ -179,10 +239,12 @@ function generateDay(){
     var head = document.createElement("th");
     head.setAttribute("align", "center");
     head.setAttribute("colspan", "2");
-    head.appendChild(document.createTextNode(osoite + " " + this.date));
+    head.appendChild(document.createTextNode(osoite + " " + this.id));
+
     cell.appendChild(head);
     body.appendChild(cell);
-    for (var i = 0; i < Object.keys(this).length - 1; i++){
+
+    for (var i = 0; i < this.dataset.hours; i++){
         cell = document.createElement("tr");
         for (var j = 0; j < 2; j++){
             var td = document.createElement("td");
@@ -190,7 +252,7 @@ function generateDay(){
                 td.appendChild(document.createTextNode(i));
             }
             else{
-                td.appendChild(document.createTextNode(this[i]));
+                td.appendChild(document.createTextNode(dbmonth.results[(this.dataset.day-1)*24 + i].consumption + " kWh"));
             }
             cell.appendChild(td);
         }

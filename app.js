@@ -8,10 +8,7 @@ var index = require('./routes/index');
 
 var app = express();
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
 
-var url = 'mongodb://localhost:8000/EmpowerSite';
 
 
 // view engine setup
@@ -46,12 +43,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-/*
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
 
-  db.close();
-});*/
+
 
 module.exports = app;
